@@ -170,11 +170,10 @@ function getModelViewMatrix() {
     const angleZ = 60 * (Math.PI / 180); // 60 degrees to radians
 
 
-    let transformationMatrix = createScaleMatrix(0.5, 0.5, 1)
-    transformationMatrix = multiplyMatrices(createRotationMatrix_X(angleX), transformationMatrix)
-    transformationMatrix = multiplyMatrices(createRotationMatrix_Y(angleY), transformationMatrix)
-    transformationMatrix = multiplyMatrices(createRotationMatrix_Z(angleZ), transformationMatrix)
-    transformationMatrix = multiplyMatrices(createTranslationMatrix(0.3, -0.25, 0), transformationMatrix)
+    let transformationMatrix = multiplyMatrices(createScaleMatrix(0.5, 0.5, 1), createRotationMatrix_X(angleX))
+    transformationMatrix = multiplyMatrices(transformationMatrix, createRotationMatrix_Y(angleY))
+    transformationMatrix = multiplyMatrices(transformationMatrix, createRotationMatrix_Z(angleZ))
+    transformationMatrix = multiplyMatrices(transformationMatrix, createTranslationMatrix(0.3, -0.25, 0))
 
     console.log(transformationMatrix)
     return getTransposeMatrix(transformationMatrix);
@@ -193,17 +192,17 @@ function getPeriodicMovement(startTime) {
     // to get a smooth animation
     const targetMatrix = new Float32Array([
         0.1767766922712326,
-        -0.2866116404032102,
-        0.7391989012326494,
-        0.3,
-        0.3061862071122423,
-        0.3695994506163247,
-        0.28033005777672404,
-        -0.25,
-        -0.3535533845424652,
-        0.1767766922712326,
+        -0.3061862071122423,
+        0.3535533845424652,
+        0.12957956156677275,
+        0.4633883326744428,
+        0.0634132435040824,
+        -0.1767766922712326,
+        0.12316319445033164,
+        0.1268264870081648,
+        0.780330057776724,
         0.6123724142244846,
-        0,
+        -0.15703456682984201,
         0,
         0,
         0,
